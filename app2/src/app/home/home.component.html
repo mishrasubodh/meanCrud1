@@ -10,10 +10,10 @@
       <td>delete <mat-divider></mat-divider></td>
     </tr>
     <tr *ngFor="let i of dataSource | paginate: { itemsPerPage: 10, currentPage: p } ;let L=index;">
-       
+       <!-- <p>{{i|json}}</p> -->
         <td>{{ (10* (p - 1)) +i._id}}  <mat-divider></mat-divider></td>
-        <td>{{i.firstName}}  <mat-divider></mat-divider></td>
-        <td>{{i.lastName}} <mat-divider></mat-divider></td>
+        <td appRedgreen>{{i.firstName}}  <mat-divider></mat-divider></td>
+        <td appBlue>{{i.lastName}} <mat-divider></mat-divider></td>
         <td>{{i.username}} <mat-divider></mat-divider></td>
         <!-- <td><button (click)="openDialog(i._id)">edit</button></td> -->
       <td><button mat-flat-button color="primary" (click)="openDialog(i._id)">EDIT  <mat-divider></mat-divider></button></td>

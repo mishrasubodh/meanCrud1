@@ -16,8 +16,13 @@ import {HttpClientModule ,HTTP_INTERCEPTORS } from '@angular/common/http'
 import {MyInterceptor} from './my-interceptor'
 import {BasicService} from './basic.service'
 import {MatPaginator} from '@angular/material/paginator'
-import {dialogbox } from  './home/home.component'
-import {NgxPaginationModule} from 'ngx-pagination'
+//import {dialogbox } from  './home/home.component'
+import {NgxPaginationModule} from 'ngx-pagination';
+import { RedgreenDirective } from './directivs/redgreen.directive';
+import { BlueDirective } from './directivs/blue.directive';
+import { EditusermodalComponent } from './modal/editusermodal/editusermodal.component';
+import { DeleteusermodalComponent } from './modal/deleteusermodal/deleteusermodal.component';
+
 
 abstract class ChangeDetectorRef {
   abstract markForCheck(): void
@@ -34,7 +39,12 @@ abstract class ChangeDetectorRef {
     LoginComponent,
     RegistrationComponent,
     HomeComponent,
-    dialogbox
+    //dialogbox,
+    RedgreenDirective,
+    BlueDirective,
+    EditusermodalComponent,
+    DeleteusermodalComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -55,7 +65,8 @@ abstract class ChangeDetectorRef {
   }
 ],
 entryComponents: [
-  dialogbox,
+  EditusermodalComponent,
+  DeleteusermodalComponent
 ],
   bootstrap: [AppComponent],
   exports:[HomeComponent]
