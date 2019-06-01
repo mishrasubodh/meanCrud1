@@ -15,11 +15,9 @@
         <td appRedgreen>{{i.firstName}}  <mat-divider></mat-divider></td>
         <td appBlue>{{i.lastName}} <mat-divider></mat-divider></td>
         <td>{{i.username}} <mat-divider></mat-divider></td>
-        <!-- <td><button (click)="openDialog(i._id)">edit</button></td> -->
       <td><button mat-flat-button color="primary" (click)="openDialog(i._id)">EDIT  <mat-divider></mat-divider></button></td>
    
       <td><button mat-flat-button color="warn" (click)="deletedata(i._id)">DELETE  <mat-divider></mat-divider></button></td>
-      <!-- <button (click)="changData(i.username)">click me</button> -->
     </tr>
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </table>

@@ -43,7 +43,7 @@ export class EditusermodalComponent implements OnInit {
       }
         this.service.putdatabyid(obj).then((data)=>{
           console.log("obj",obj)
-if(!data==undefined || !data==null){
+if(data!==undefined || data!==null){
   console.log('data on edit page',data)
   this.dialogRef.close(data); 
 }

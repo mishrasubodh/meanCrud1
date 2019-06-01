@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, OnChanges } from '@angular/core';
+import { Component, OnInit, HostListener, OnChanges, Output ,EventEmitter, Input} from '@angular/core';
 import { MeterialModule } from '../meterial/meterial.module'
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -11,7 +11,8 @@ import { UsersService } from '../users.service'
 import { BasicService } from '../basic.service'
 import { error } from '@angular/compiler/src/util';
 import { VALID } from '@angular/forms/src/model';
-
+import { BehaviorSubject, Observable } from 'rxjs';
+import {GlobalService} from '../global.service'
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ import { VALID } from '@angular/forms/src/model';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+ logindataforuser={};
   model: any = {};
   registerForm: FormGroup;
   submitted = false;
@@ -43,7 +45,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     public config: Config,
     private authservice: UsersService,
-    private basicservice: BasicService
+    private basicservice: BasicService,
+    private glservice:GlobalService
 
   ) {
 
@@ -82,13 +85,11 @@ export class LoginComponent implements OnInit {
   updatedDataSelection(data){ debugger
   this.basicservice.edit(data);
 console.log("ghghgghghghghghghghhghgh",this.customedata);
-
   this.router.navigate(['/home'])
   }
 
 
   onSubmit(user) {
-
     this.submitted = true;
     if (this.registerForm.invalid) {
       this.config.openSnackBar('Error', false)
@@ -108,8 +109,6 @@ console.log("ghghgghghghghghghghhghgh",this.customedata);
       resolve();
     });
   }
-
-
   username: any;
   save(user) {
     this.checkvalidation().then(() => {
@@ -117,19 +116,22 @@ console.log("ghghgghghghghghghghhghgh",this.customedata);
 
       this.authservice.getLogin(user).subscribe((data) => { debugger
 
-        //console.log("hello", data.message)
+        console.log("hello", data)
         //console.log("aafdjsiofjsdhfsa", data['message'].message)
         if (data['message'] == 'auth successful') { debugger
+         this.glservice.getlogindataonglobal(data)
 
           this.config.openSnackBar('login successful', true) 
-          if (this.checked == true) {
+          if (this.checked == true) { debugger
+           
             localStorage.setItem('logindata', JSON.stringify(this.users))
+           
           }
           else if (this.checked == false) {
             localStorage.removeItem('logindata')
           }
-          this.router.navigate(['home'])
-
+        this.router.navigate(['user'])
+        
           setTimeout(() => {
             this.registerForm.reset();
           }, 3000)

@@ -22,7 +22,8 @@ import { RedgreenDirective } from './directivs/redgreen.directive';
 import { BlueDirective } from './directivs/blue.directive';
 import { EditusermodalComponent } from './modal/editusermodal/editusermodal.component';
 import { DeleteusermodalComponent } from './modal/deleteusermodal/deleteusermodal.component';
-
+import { UsersComponent } from './users/users.component';
+import {GlobalService} from './global.service'
 
 abstract class ChangeDetectorRef {
   abstract markForCheck(): void
@@ -44,6 +45,7 @@ abstract class ChangeDetectorRef {
     BlueDirective,
     EditusermodalComponent,
     DeleteusermodalComponent,
+    UsersComponent,
     
   ],
   imports: [
@@ -57,7 +59,7 @@ abstract class ChangeDetectorRef {
     NgxPaginationModule
   ],
   providers: [
-    Config,UsersService,HomeComponent,BasicService,
+    Config,UsersService,HomeComponent,BasicService,GlobalService,
      {
     provide: HTTP_INTERCEPTORS,
     useClass: MyInterceptor,

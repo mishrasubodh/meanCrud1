@@ -4,7 +4,7 @@
     <mat-card>
       <form class="edit-user-form" [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
               <mat-form-field>
-                      <input autofocus  type="text" matInput placeholder="id" formControlName="id" readonly [(ngModel)]="editabledata._id" >
+                      <input appBlue autofocus  type="text" matInput placeholder="id" formControlName="id" readonly [(ngModel)]="editabledata._id" >
                     </mat-form-field>
           
               <mat-form-field>
